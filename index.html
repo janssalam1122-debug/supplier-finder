@@ -190,7 +190,7 @@ async function runSearch(query,b64,iType,isImg){
     const searchData=await searchResp.json();console.log('SERP:',JSON.stringify(searchData));
 
     // Claude analyzes results
-    const txt=googleResults.slice(0,10).map((r,i)=>`${i+1}. ${r.title}\nURL: ${r.link}\n${r.snippet||''}`).join('\n\n');
+    const googleResults=searchData.results||searchData.organic_results||[];
     const prompt=`أنت خبير موردين أوروبيين. المنتج: "${query}"\n\nنتائج Google الحقيقية:\n${txt}\n\nاستخرج المعلومات وأعطني JSON فقط:\n{"suppliers":[{"name":"اسم الشركة","url":"الرابط","source":"Europages/Kompass/اسم الموقع","source_cls":"p-eu/p-ko/p-other","desc":"وصف بالعربية","country":"DE/FR/IT","flag":"🇩🇪"}],"tip":"نصيحة واحدة مهمة بالعربية"}`;
     const aiR=await fetch(CLAUDE_API,{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:prompt}]})});
