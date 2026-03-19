@@ -4,231 +4,98 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>بحث الموردين الأوروبيين</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0A0A0B;--surface:#111113;--surface2:#18181C;--border:#2A2A30;--border2:#3A3A42;--text:#F0F0F2;--text2:#9090A0;--text3:#5A5A68;--accent:#4F8EF7;--accent2:#2D5FBA;--green:#2ECC8A;--amber:#F0A030;--font:'IBM Plex Sans Arabic',sans-serif;--mono:'IBM Plex Mono',monospace;}
-body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;direction:rtl}
-.wrap{max-width:1100px;margin:0 auto;padding:2rem 2rem 4rem}
-.logo-row{display:flex;align-items:center;gap:10px;margin-bottom:.5rem}
-.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-h1{font-size:30px;font-weight:600;color:var(--text);margin-bottom:6px}
-h1 span{color:var(--accent)}
-.tagline{font-size:14px;color:var(--text2);margin-bottom:1.5rem}
-.mode-tabs{display:flex;background:var(--surface);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1rem}
-.mode-tab{flex:1;padding:12px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;color:var(--text2);background:transparent;border:none;font-family:var(--font);transition:.2s}
-.mode-tab.active{background:var(--accent);color:#fff}
-.search-box{display:flex;background:var(--surface);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:.75rem}
-.search-box input{flex:1;padding:14px 18px;background:transparent;border:none;outline:none;font-size:15px;color:var(--text);font-family:var(--font)}
-.search-box input::placeholder{color:var(--text3)}
-.search-box button{padding:14px 24px;background:var(--accent);border:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
-.search-box button:disabled{background:var(--border2);color:var(--text3);cursor:not-allowed}
-.quick-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem}
-.qtag{padding:5px 13px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--text2);cursor:pointer;background:transparent}
-.qtag:hover{border-color:var(--border2);color:var(--text)}
-.img-area{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:1.25rem;margin-bottom:.75rem}
-.drop-zone{border:2px dashed var(--border2);border-radius:10px;padding:2rem;text-align:center;cursor:pointer;position:relative;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.drop-zone:hover{border-color:var(--accent)}
-#imgPrev{max-width:100%;max-height:240px;border-radius:8px;display:none;object-fit:contain}
-.det-bar{display:none;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-top:10px}
-.det-lbl{font-size:11px;color:var(--green);font-family:var(--mono)}
-.det-val{font-size:13px;font-weight:500;color:var(--text)}
-.clear-btn{margin-right:auto;padding:4px 10px;background:transparent;border:1px solid var(--border2);border-radius:5px;font-size:12px;color:var(--text2);cursor:pointer}
-.img-btn{width:100%;margin-top:10px;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
-.img-btn:disabled{background:var(--border2);color:var(--text3);cursor:not-allowed}
-.ai-panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;position:relative;overflow:hidden;margin-bottom:1.2rem}
-.ai-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--green))}
-.ai-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;display:inline-block;margin-left:8px}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.2rem}
-.sc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem}
-.sc-l{font-size:10px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;margin-bottom:5px}
-.sc-v{font-size:22px;font-weight:600;color:var(--text)}
+body{background:#0A0A0B;color:#F0F0F2;font-family:'IBM Plex Sans Arabic',sans-serif;min-height:100vh;direction:rtl;padding:2rem}
+h1{font-size:28px;font-weight:600;margin-bottom:6px}
+h1 span{color:#4F8EF7}
+.sub{font-size:14px;color:#9090A0;margin-bottom:1.5rem}
+.search-row{display:flex;gap:10px;margin-bottom:1rem}
+.search-row input{flex:1;padding:12px 16px;background:#111113;border:1px solid #3A3A42;border-radius:8px;font-size:15px;color:#F0F0F2;font-family:inherit;outline:none}
+.search-row input:focus{border-color:#4F8EF7}
+.search-row button{padding:12px 24px;background:#4F8EF7;border:none;color:#fff;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.search-row button:disabled{background:#2A2A30;color:#5A5A68;cursor:not-allowed}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
+.tag{padding:5px 13px;border:1px solid #2A2A30;border-radius:20px;font-size:12px;color:#9090A0;cursor:pointer;background:transparent}
+.tag:hover{border-color:#3A3A42;color:#F0F0F2}
+.status{background:#111113;border:1px solid #2A2A30;border-radius:10px;padding:1rem;margin-bottom:1rem;font-size:13px;color:#9090A0}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .15s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.cb{padding:15px}
-.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
-.cname{font-size:14px;font-weight:600;color:var(--text);line-height:1.3}
-.spill{font-size:10px;font-family:var(--mono);padding:3px 8px;border-radius:5px;white-space:nowrap}
-.cloc{font-size:12px;color:var(--text3);margin-bottom:7px}
-.cdesc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:9px}
-.cpills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
-.pill{font-size:11px;padding:2px 7px;border-radius:4px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);font-family:var(--mono)}
-.pill.cert{border-color:#2D5030;color:var(--green)}
-.pill.moq{border-color:#3A2D10;color:var(--amber)}
-.cfoot{padding:10px 15px;border-top:1px solid var(--border);display:flex;gap:8px;background:var(--surface2)}
-.btn{padding:7px 13px;border-radius:7px;font-size:12px;cursor:pointer;font-weight:500;font-family:var(--font)}
-.btn-p{background:var(--accent);color:#fff;border:none;flex:1}
-.btn-g{background:transparent;color:var(--text2);border:1px solid var(--border2)}
-.real-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(46,204,138,.08);border:1px solid rgba(46,204,138,.25);border-radius:5px;padding:3px 9px;font-size:11px;color:var(--green);font-family:var(--mono);margin-bottom:1rem}
-.empty{text-align:center;padding:4rem 2rem}
-.empty-ico{font-size:48px;margin-bottom:1rem;display:block}
-.empty p{font-size:14px;color:var(--text2)}
-@media(max-width:680px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+.card{background:#111113;border:1px solid #2A2A30;border-radius:10px;padding:14px;transition:.2s}
+.card:hover{border-color:#4F8EF7}
+.card-title{font-size:14px;font-weight:600;color:#F0F0F2;margin-bottom:6px}
+.card-url{font-size:11px;color:#4F8EF7;margin-bottom:8px;word-break:break-all;direction:ltr;text-align:left}
+.card-desc{font-size:12px;color:#9090A0;line-height:1.6;margin-bottom:10px}
+.card-btn{width:100%;padding:8px;background:#4F8EF7;border:none;color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.empty{text-align:center;padding:4rem;color:#5A5A68}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="logo-row"><div class="logo-dot"></div><span style="font-size:11px;color:var(--text2);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase">European Supplier Finder</span></div>
 <h1>بحث الموردين <span>الأوروبيين</span></h1>
-<p class="tagline">نتائج حقيقية من Google — Europages · Kompass · Go4WorldBusiness · Wer liefert was</p>
-<div class="mode-tabs">
-  <button class="mode-tab active" id="tabText" onclick="switchMode('text')">🔤 بحث بالنص</button>
-  <button class="mode-tab" id="tabImg" onclick="switchMode('image')">📷 بحث بالصورة</button>
+<p class="sub">نتائج حقيقية من Google — Europages · Kompass · Go4WorldBusiness</p>
+
+<div class="search-row">
+  <input type="text" id="q" placeholder="اكتب اسم المنتج... مثال: office furniture, solar panels"/>
+  <button id="btn" onclick="doSearch()">بحث ↗</button>
 </div>
-<div id="textMode">
-  <div class="search-box">
-    <input type="text" id="q" placeholder="اكتب اسم المنتج... مثال: أثاث مكتبي، solar panels، قهوة عضوية"/>
-    <button id="btnText" onclick="doText()">بحث ↗</button>
-  </div>
-  <div class="quick-tags">
-    <div class="qtag" onclick="qs('office furniture Germany')">أثاث مكتبي</div>
-    <div class="qtag" onclick="qs('medical supplies Europe')">مستلزمات طبية</div>
-    <div class="qtag" onclick="qs('organic coffee supplier Germany')">قهوة عضوية</div>
-    <div class="qtag" onclick="qs('clothing manufacturer Europe wholesale')">ملابس</div>
-    <div class="qtag" onclick="qs('solar panels manufacturer Europe')">ألواح شمسية</div>
-    <div class="qtag" onclick="qs('packaging materials Germany')">تغليف</div>
-    <div class="qtag" onclick="qs('cosmetics manufacturer France')">تجميل</div>
-    <div class="qtag" onclick="qs('food wholesale Europe')">غذاء</div>
-  </div>
+
+<div class="tags">
+  <div class="tag" onclick="qs('office furniture Germany')">أثاث مكتبي</div>
+  <div class="tag" onclick="qs('medical supplies Europe')">مستلزمات طبية</div>
+  <div class="tag" onclick="qs('organic coffee Germany')">قهوة عضوية</div>
+  <div class="tag" onclick="qs('clothing manufacturer Europe')">ملابس</div>
+  <div class="tag" onclick="qs('solar panels Europe')">ألواح شمسية</div>
+  <div class="tag" onclick="qs('cosmetics manufacturer France')">تجميل</div>
+  <div class="tag" onclick="qs('food wholesale Europe')">غذاء</div>
+  <div class="tag" onclick="qs('packaging materials Germany')">تغليف</div>
 </div>
-<div id="imageMode" style="display:none">
-  <div class="img-area">
-    <div class="drop-zone" id="dz">
-      <input type="file" id="fileIn" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="onFile(event)"/>
-      <span style="font-size:32px;margin-bottom:.5rem">📦</span>
-      <div style="font-size:14px;color:var(--text2);margin-bottom:.25rem" id="dzTxt">اسحب صورة المنتج أو اضغط للرفع</div>
-      <div style="font-size:12px;color:var(--text3)" id="dzSub">AI يحدد المنتج ويبحث عن موردينه الحقيقيين</div>
-      <img id="imgPrev" src="" alt=""/>
-    </div>
-    <div class="det-bar" id="detBar">
-      <div><div class="det-lbl">المنتج المكتشف</div><div class="det-val" id="detVal">—</div></div>
-      <button class="clear-btn" onclick="clearImg()">✕ مسح</button>
-    </div>
-    <button class="img-btn" id="btnImg" disabled onclick="doImage()">📷 ابحث عن موردين لهذا المنتج</button>
-  </div>
-</div>
-<div id="aiLoad" style="display:none" class="ai-panel">
-  <div style="display:flex;align-items:center;margin-bottom:.6rem"><div class="ai-dot"></div><span style="font-size:13px;font-weight:500;color:var(--text)" id="aiTit">يبحث في Google...</span></div>
-  <div style="font-size:13px;color:var(--text2)" id="aiSub">جاري جلب نتائج حقيقية...</div>
-  <div style="height:2px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden"><div style="height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .4s" id="pf"></div></div>
-</div>
-<div id="statsWrap" style="display:none">
-  <div class="stats">
-    <div class="sc"><div class="sc-l">موردين</div><div class="sc-v" id="sN">0</div></div>
-    <div class="sc"><div class="sc-l">Europages</div><div class="sc-v" id="sEU">0</div></div>
-    <div class="sc"><div class="sc-l">Kompass</div><div class="sc-v" id="sKO">0</div></div>
-    <div class="sc"><div class="sc-l">مصادر أخرى</div><div class="sc-v" id="sOT">0</div></div>
-  </div>
-</div>
-<div id="results"><div class="empty"><span class="empty-ico">🏭</span><p>ابحث بالنص أو ارفع صورة منتج للعثور على موردين أوروبيين حقيقيين</p></div></div>
-</div>
+
+<div id="status" style="display:none" class="status">جاري البحث...</div>
+<div id="results"><div class="empty">🏭<br/>ابحث عن أي منتج</div></div>
+
 <script>
-const CLAUDE_API="https://api.anthropic.com/v1/messages";
-let allS=[],imgB64=null,imgType=null,detProd='';
+function qs(t){document.getElementById('q').value=t;doSearch()}
 
-function switchMode(m){
-  document.getElementById('textMode').style.display=m==='text'?'block':'none';
-  document.getElementById('imageMode').style.display=m==='image'?'block':'none';
-  document.getElementById('tabText').className='mode-tab'+(m==='text'?' active':'');
-  document.getElementById('tabImg').className='mode-tab'+(m==='image'?' active':'');
-}
-function onFile(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    imgB64=ev.target.result.split(',')[1];imgType=file.type||'image/jpeg';
-    const p=document.getElementById('imgPrev');p.src=ev.target.result;p.style.display='block';
-    document.getElementById('dzTxt').style.display='none';document.getElementById('dzSub').style.display='none';
-    document.getElementById('btnImg').disabled=false;autoDetect();
-  };reader.readAsDataURL(file);
-}
-async function autoDetect(){
-  document.getElementById('detBar').style.display='flex';
-  document.getElementById('detVal').textContent='جاري التعرف...';
-  try{
-    const r=await fetch(CLAUDE_API,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:50,
-        messages:[{role:'user',content:[
-          {type:'image',source:{type:'base64',media_type:imgType,data:imgB64}},
-          {type:'text',text:'What product is this? Reply in English only, 2-4 words for supplier search.'}
-        ]}]})});
-    const d=await r.json();
-    detProd=(d.content[0]?.text||'').trim().replace(/['".,]/g,'');
-    document.getElementById('detVal').textContent=detProd||'منتج';
-    document.getElementById('btnImg').textContent=`🔍 بحث عن موردين لـ "${detProd}"`;
-  }catch{detProd='product supplier Europe';document.getElementById('detVal').textContent='اضغط للبحث';}
-}
-function clearImg(){
-  imgB64=null;imgType=null;detProd='';
-  document.getElementById('imgPrev').style.display='none';
-  document.getElementById('dzTxt').style.display='';document.getElementById('dzSub').style.display='';
-  document.getElementById('detBar').style.display='none';
-  document.getElementById('btnImg').disabled=true;
-  document.getElementById('btnImg').textContent='📷 ابحث عن موردين لهذا المنتج';
-  document.getElementById('fileIn').value='';
-}
-function qs(t){document.getElementById('q').value=t;doText()}
-function doText(){const q=document.getElementById('q').value.trim();if(q)runSearch(q,null,null,false)}
-function doImage(){if(imgB64)runSearch(detProd,imgB64,imgType,true)}
-
-async function runSearch(query,b64,iType,isImg){
-  const btn=document.getElementById(isImg?'btnImg':'btnText');
-  btn.disabled=true;btn.textContent='جاري البحث...';
-  document.getElementById('aiLoad').style.display='block';
-  document.getElementById('statsWrap').style.display='none';
+async function doSearch(){
+  const q=document.getElementById('q').value.trim();
+  if(!q) return;
+  const btn=document.getElementById('btn');
+  btn.disabled=true;btn.textContent='جاري...';
+  const st=document.getElementById('status');
+  st.style.display='block';st.textContent='يبحث في Google عن موردين حقيقيين...';
   document.getElementById('results').innerHTML='';
-  document.getElementById('pf').style.width='0%';
-  let p=0;const iv=setInterval(()=>{p+=6;document.getElementById('pf').style.width=Math.min(p,85)+'%'},300);
-  try{
-    // Call our Vercel backend
-    const searchResp=await fetch('/api/search',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({query:query+' supplier Europe',imageBase64:b64,imageType:iType})
-    });
-    const searchData=await searchResp.json();console.log('SERP:',JSON.stringify(searchData));
 
-    // Claude analyzes results
-    const googleResults=searchData.results||searchData.organic_results||[];
-    const prompt=`أنت خبير موردين أوروبيين. المنتج: "${query}"\n\nنتائج Google الحقيقية:\n${txt}\n\nاستخرج المعلومات وأعطني JSON فقط:\n{"suppliers":[{"name":"اسم الشركة","url":"الرابط","source":"Europages/Kompass/اسم الموقع","source_cls":"p-eu/p-ko/p-other","desc":"وصف بالعربية","country":"DE/FR/IT","flag":"🇩🇪"}],"tip":"نصيحة واحدة مهمة بالعربية"}`;
-    const aiR=await fetch(CLAUDE_API,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:prompt}]})});
-    clearInterval(iv);document.getElementById('pf').style.width='100%';
-    const aiD=await aiR.json();
-    const raw=aiD.content.map(b=>b.text||'').join('');
-    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    allS=parsed.suppliers||[];
-    if(parsed.tip){
-      document.getElementById('results').innerHTML=`<div style="background:rgba(240,160,48,.08);border:1px solid rgba(240,160,48,.25);border-radius:8px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:var(--amber)">💡 ${parsed.tip}</div>`;
+  try{
+    const r=await fetch('/api/search',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({query:q+' supplier manufacturer Europe'})
+    });
+    const data=await r.json();
+    const results=data.results||[];
+    
+    st.textContent='تم العثور على '+results.length+' نتيجة حقيقية من Google ✅';
+    
+    if(!results.length){
+      document.getElementById('results').innerHTML='<div class="empty">لا توجد نتائج — جرب كلمة أخرى</div>';
+    } else {
+      document.getElementById('results').innerHTML=`<div class="grid">${results.map(r=>`
+        <div class="card">
+          <div class="card-title">${r.title||'—'}</div>
+          <div class="card-url">${r.link||''}</div>
+          <div class="card-desc">${r.snippet||'—'}</div>
+          <button class="card-btn" onclick="window.open('${(r.link||'').replace(/'/g,"\\'")}','_blank')">فتح المورد ↗</button>
+        </div>`).join('')}</div>`;
     }
-    renderCards(isImg,query);
-    document.getElementById('statsWrap').style.display='block';
-    document.getElementById('aiLoad').style.display='none';
-    document.getElementById('sN').textContent=allS.length;
-    document.getElementById('sEU').textContent=allS.filter(s=>(s.url||'').includes('europages')).length;
-    document.getElementById('sKO').textContent=allS.filter(s=>(s.url||'').includes('kompass')).length;
-    document.getElementById('sOT').textContent=allS.filter(s=>!(s.url||'').includes('europages')&&!(s.url||'').includes('kompass')).length;
   }catch(err){
-    clearInterval(iv);document.getElementById('aiSub').textContent='خطأ — حاول مجدداً.';console.error(err);
+    st.textContent='خطأ: '+err.message;
+    console.error(err);
   }
-  btn.disabled=false;btn.textContent=isImg?'📷 ابحث عن موردين لهذا المنتج':'بحث ↗';
+  btn.disabled=false;btn.textContent='بحث ↗';
 }
-function renderCards(isImg,query){
-  const srcCls={europages:'background:#1A3A5C;color:#6AACF0',kompass:'background:#1A3A2A;color:#50C880',other:'background:#1A1A3A;color:#8080F0'};
-  const existing=document.getElementById('results').innerHTML;
-  document.getElementById('results').innerHTML=existing+`<div class="real-tag">✅ ${allS.length} مورد حقيقي من Google</div><div class="grid">${allS.map(s=>{
-    const sc=s.url?.includes('europages')?'europages':s.url?.includes('kompass')?'kompass':'other';
-    return `<div class="card"><div class="cb">
-      <div class="ctop"><div class="cname">${s.name}</div><span class="spill" style="${srcCls[sc]}">${s.source||'Google'}</span></div>
-      <div class="cloc">${s.flag||'🌍'} ${s.country||'EU'}</div>
-      <div class="cdesc">${s.desc||'—'}</div>
-    </div><div class="cfoot">
-      <button class="btn btn-g" onclick="window.open('${(s.url||'').replace(/'/g,"\\'")}','_blank')">فتح المورد ↗</button>
-    </div></div>`;
-  }).join('')}</div>`;
-}
-document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')doText()});
+
+document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
 </script>
 </body>
 </html>
