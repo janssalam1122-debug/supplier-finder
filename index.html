@@ -187,8 +187,7 @@ async function runSearch(query,b64,iType,isImg){
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({query:query+' supplier Europe',imageBase64:b64,imageType:iType})
     });
-    const searchData=await searchResp.json();
-    const googleResults=searchData.results||[];
+    const searchData=await searchResp.json();console.log('SERP:',JSON.stringify(searchData));
 
     // Claude analyzes results
     const txt=googleResults.slice(0,10).map((r,i)=>`${i+1}. ${r.title}\nURL: ${r.link}\n${r.snippet||''}`).join('\n\n');
