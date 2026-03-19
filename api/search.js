@@ -5,28 +5,23 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { query, imageBase64, imageType } = req.body;
-  const SERP_KEY = process.env.SERP_KEY;
-
-  const searches = [
-    `${query} supplier site:europages.com OR site:europages.de`,
-    `${query} manufacturer site:kompass.com OR site:de.kompass.com`,
-    `${query} wholesale supplier Europe B2B`
-  ];
-
-  let allItems = [];
-  for (const q of searches) {
-    const url = `https://serpapi.com/search?api_key=${SERP_KEY}&engine=google&q=${encodeURIComponent(q)}&num=5&gl=de&hl=en`;
+  try {
+    const { query } = req.body;
+    const SERP_KEY = process.env.SERP_KEY;
+    
+    const url = `https://serpapi.com/search.json?api_key=${SERP_KEY}&engine=google&q=${encodeURIComponent(query + ' supplier Europe')}&num=10&gl=de&hl=en`;
+    
     const r = await fetch(url);
     const d = await r.json();
-    if (d.organic_results) allItems = [...allItems, ...d.organic_results];
+    
+    const results = (d.organic_results || []).slice(0, 10).map(r => ({
+      title: r.title,
+      link: r.link,
+      snippet: r.snippet || ''
+    }));
+    
+    res.status(200).json({ results });
+  } catch (e) {
+    res.status(500).json({ error: e.message, results: [] });
   }
-
-  const seen = new Set();
-  const results = allItems.filter(i => {
-    if (seen.has(i.link)) return false;
-    seen.add(i.link); return true;
-  }).slice(0, 12);
-
-  res.status(200).json({ results });
 }
